@@ -1,0 +1,31 @@
+#include<Servo.h> 
+Servo myservo1; 
+void setup() { 
+// put your setup code here, to run once: 
+pinMode(2,INPUT); 
+pinMode(3,OUTPUT); 
+pinMode(4,OUTPUT); 
+digitalWrite(3,LOW); 
+digitalWrite(4,LOW); 
+myservo1.attach(5); 
+myservo1.write(50); 
+Serial.begin(9600); 
+} 
+void loop() { 
+Serial.println(digitalRead(2)); 
+// put your main code here, to run repeatedly: 
+if(digitalRead(2)==0) 
+{ 
+digitalWrite(4,HIGH); 
+digitalWrite(3,HIGH); 
+myservo1.write(180); 
+while(digitalRead(2)==0) 
+{ 
+delay(1000); 
+} 
+digitalWrite(4,LOW); 
+digitalWrite(3,LOW); 
+myservo1.write(50); 
+} 
+delay(1000); 
+}
